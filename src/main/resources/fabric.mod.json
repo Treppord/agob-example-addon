@@ -1,28 +1,24 @@
 {
-	"schemaVersion": 1,
-	"id": "${mod_id}",
-	"version": "${version}",
-	"name": "${mod_name}",
-	"description": "A minimal Fabric addon mod that demonstrates the public AGOB addon API.",
-	"authors": [
-		"Trep"
-	],
-	"contact": {
-		"sources": "https://github.com/treppord/got-mod"
-	},
-	"license": "CC0-1.0",
-	"icon": "assets/${mod_id}/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"agob-addon": [
-			"trep.exampleagobaddon.ExampleAgobAddon"
-		]
-	},
-	"depends": {
-		"fabricloader": ">=0.18.5",
-		"minecraft": "~1.21.1",
-		"java": ">=21",
-		"fabric-api": "*",
-		"agob": "*"
-	}
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "A Dothraki Kingdom And Religion Addon for AGOB.",
+  "authors": ["Trep"],
+  "contact": {
+    "sources": "https://github.com/treppord/got-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/${mod_id}/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "agob-addon": ["trep.exampleagobaddon.ExampleAgobAddon"]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.5",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "agob": "*"
+  }
 }
