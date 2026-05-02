@@ -38,6 +38,7 @@ public final class ExampleAgobAddon implements AgobAddonEntrypoint {
 			Culture.ESSOS
 		);
 		context.registerKingdom(dothraki, Set.of(
+			KingdomCategory.AI_WAR,
 			KingdomCategory.CHARACTER_OPTION,
 			KingdomCategory.CASTLELESS_ORIGIN
 		));
