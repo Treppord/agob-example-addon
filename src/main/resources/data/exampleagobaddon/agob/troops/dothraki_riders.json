@@ -1,9 +1,9 @@
 {
-  "kingdom_id": "exampleagobaddon:starhaven",
+  "kingdom_id": "exampleagobaddon:dothraki",
   "camp_site": {
-    "id": "exampleagobaddon:starhaven_waycamp",
-    "structure_path": "exampleagobaddon/starhaven_waycamp",
-    "claim_name": "Starhaven Waycamp",
+    "id": "exampleagobaddon:dothraki_khalasar",
+    "structure_path": "exampleagobaddon/dothraki_khalasar",
+    "claim_name": "Khalasar Camp",
     "tier_name": "Encampment",
     "claim_radius_chunks": 1,
     "min_spawn_count": 1,
@@ -11,30 +11,29 @@
     "allow_other_kingdom_spawns": false,
     "other_kingdom_spawn_percent": 0,
     "spawn_kingdom_ids": [
-      "exampleagobaddon:starhaven"
+      "exampleagobaddon:dothraki"
     ],
     "troop_ids": [
-      "exampleagobaddon:starhaven_scout"
+      "exampleagobaddon:dothraki_rider"
     ]
   },
   "troops": [
     {
-      "id": "exampleagobaddon:starhaven_scout",
-      "display_name": "Starhaven Scout",
-      "unit_type": "archer",
+      "id": "exampleagobaddon:dothraki_rider",
+      "display_name": "Dothraki Rider",
+      "unit_type": "cavalry",
       "tier": 2,
       "traits": [
-        "ranged",
+        "mounted",
         "fast",
-        "coastal"
+        "raider"
       ],
       "upgrade_targets": [],
-      "skin_texture": "exampleagobaddon:textures/entity/starhaven_scout.png",
+      "skin_texture": "exampleagobaddon:textures/entity/dothraki_rider.png",
       "hire_cost_item": "minecraft:gold_ingot",
       "hire_cost_amount": 8,
       "equipment": {
-        "head": "minecraft:chainmail_helmet",
-        "chest": "minecraft:chainmail_chestplate",
+        "chest": "minecraft:leather_chestplate",
         "legs": "minecraft:leather_leggings",
         "feet": "minecraft:leather_boots",
         "mainhand": "minecraft:bow",
@@ -42,7 +41,7 @@
       },
       "base_health": 28.0,
       "base_damage": 4.0,
-      "base_speed": 0.26
+      "base_speed": 0.28
     }
   ]
 }

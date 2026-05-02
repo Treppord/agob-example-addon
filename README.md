@@ -1,6 +1,6 @@
 # Example AGOB Addon
 
-This repository is a complete Fabric addon example for `A Game of Blocks` using the documented AGOB addon API. It is intentionally small and copyable: one addon entrypoint, one troop pack, one quest template, one custom religion, one custom Essos kingdom, and one primary character selection option.
+This repository is a complete Fabric addon example for `A Game of Blocks` using the documented AGOB addon API. It is intentionally small and copyable: one addon entrypoint, one troop pack, one quest template, one custom religion, one custom Essos kingdom, and three kingdom character options with one primary option.
 
 ## What It Demonstrates
 
@@ -17,8 +17,8 @@ This repository is a complete Fabric addon example for `A Game of Blocks` using 
 
 - `src/main/java/trep/exampleagobaddon/ExampleAgobAddon.java`
 - `src/main/resources/fabric.mod.json`
-- `src/main/resources/data/exampleagobaddon/agob/troops/starhaven_outriders.json`
-- `src/main/resources/data/exampleagobaddon/agob/quests/starforge_supplies.json`
+- `src/main/resources/data/exampleagobaddon/agob/troops/dothraki_riders.json`
+- `src/main/resources/data/exampleagobaddon/agob/quests/khalasar_supplies.json`
 - `src/main/resources/assets/exampleagobaddon/...`
 
 ## Local Setup
@@ -63,24 +63,25 @@ The entrypoint registers content in this order:
 5. one `ReligionSelectionOption`
 6. one primary `CharacterSelectionOption`
 
-The example kingdom uses the custom `Sea of Stars` religion and `Culture.ESSOS`, so it represents an Essos-side faction addon while staying inside the supported addon surface and avoiding AGOB internals, mixins, or reflection hooks.
+The example kingdom uses the custom `Great Shepherd` religion and `Culture.ESSOS`, so it represents an Essos-side faction addon while staying inside the supported addon surface and avoiding AGOB internals, mixins, or reflection hooks.
 
 ## Registered Example Content
 
-- Religion id: `exampleagobaddon:sea_of_stars`
-- Kingdom id: `exampleagobaddon:starhaven`
+- Religion id: `exampleagobaddon:great_shepherd`
+- Kingdom id: `exampleagobaddon:dothraki`
 - Kingdom culture: `ESSOS`
-- Kingdom religion: `Sea of Stars`
-- Religion option id: `exampleagobaddon:sea_of_stars`
-- Character option id: `exampleagobaddon:house_tidecaller`
-- Troop file: `starhaven_outriders.json`
-- Quest file: `starforge_supplies.json`
+- Kingdom religion: `Great Shepherd`
+- Religion option id: `exampleagobaddon:great_shepherd`
+- Primary character option id: `exampleagobaddon:house_drogo`
+- Additional character option ids: `exampleagobaddon:house_jhaqo`, `exampleagobaddon:house_pono`
+- Troop file: `dothraki_riders.json`
+- Quest file: `khalasar_supplies.json`
 
 The troop JSON follows AGOB's dynamic troop schema and includes:
 
 - a namespaced `kingdom_id`
 - one `camp_site`
-- one troop entry with equipment, stats, traits, and a matching skin texture id
+- one cavalry troop entry with equipment, stats, traits, and a matching skin texture id
 
 The quest JSON follows AGOB's current quest template schema and includes:
 
@@ -88,6 +89,12 @@ The quest JSON follows AGOB's current quest template schema and includes:
 - one allowed NPC role
 - one allowed kingdom id
 - at least one reward entry
+
+The character example includes three lore-inspired Dothraki options:
+
+- `Drogo` as the primary option, representing Khal Drogo's khalasar
+- `Jhaqo`
+- `Pono`
 
 ## Extension Notes
 

@@ -18,63 +18,112 @@ import java.util.Set;
 
 public final class ExampleAgobAddon implements AgobAddonEntrypoint {
 	public static final String MOD_ID = "exampleagobaddon";
-	private static final String RELIGION_ID = MOD_ID + ":sea_of_stars";
-	private static final String KINGDOM_PATH = "starhaven";
-	private static final String CHARACTER_OPTION_ID = MOD_ID + ":house_tidecaller";
+	private static final String RELIGION_ID = MOD_ID + ":great_shepherd";
+	private static final String KINGDOM_PATH = "dothraki";
 
 	@Override
 	public void register(AgobAddonContext context) {
 		context.registerTroopResourceDirectory("data/" + MOD_ID + "/agob/troops");
-		context.registerQuestTemplateResource("data/" + MOD_ID + "/agob/quests/starforge_supplies.json");
+		context.registerQuestTemplateResource("data/" + MOD_ID + "/agob/quests/khalasar_supplies.json");
 
-		Religion seaOfStars = context.registerReligion(RELIGION_ID, "Sea of Stars");
-		Kingdom starhaven = new Kingdom(
-			"Starhaven",
+		Religion greatShepherd = context.registerReligion(RELIGION_ID, "Great Shepherd");
+		Kingdom dothraki = new Kingdom(
+			"Dothraki",
 			Identifier.of(MOD_ID, KINGDOM_PATH),
-			seaOfStars,
+			greatShepherd,
 			Culture.ESSOS
 		);
-		context.registerKingdom(starhaven, Set.of(
+		context.registerKingdom(dothraki, Set.of(
 			KingdomCategory.CHARACTER_OPTION,
 			KingdomCategory.CASTLELESS_ORIGIN
 		));
 
 		context.registerReligionOption(new ReligionSelectionOption(
 			RELIGION_ID,
-			seaOfStars,
-			"Sea of Stars",
-			"Navigator-priests who read fate in the tides and constellations.",
-			Identifier.of(MOD_ID, "textures/gui/religion/sea_of_stars.png")
+			greatShepherd,
+			"Great Shepherd",
+			"Faith carried across the grasslands by shepherds, riders, and captives of the eastern plains.",
+			Identifier.of(MOD_ID, "textures/gui/religion/great_shepherd.png")
 		));
 
-		context.registerCharacterOption(new CharacterSelectionOption(
-			CHARACTER_OPTION_ID,
-			starhaven.getId(),
-			Identifier.of(MOD_ID, "textures/gui/houses/house_tidecaller.png"),
-			Identifier.of(MOD_ID, "textures/entity/character/tidecaller_founder.png"),
-			false,
-			"Starhaven",
-			"House Tidecaller",
+		context.registerCharacterOption(createKhalasarOption(
+			dothraki,
+			"house_drogo",
+			"house_drogo",
+			"khal_drogo",
+			"Dothraki",
+			"Drogo",
 			true,
+			Map.of(
+				SkillAttributeType.CHARISMA, 2,
+				SkillAttributeType.RIDING, 2,
+				SkillAttributeType.LUCK, 1
+			)
+		));
+		context.registerCharacterOption(createKhalasarOption(
+			dothraki,
+			"house_jhaqo",
+			"house_jhaqo",
+			"khal_jhaqo",
+			"Dothraki",
+			"Jhaqo",
+			false,
+			Map.of(
+				SkillAttributeType.RIDING, 2,
+				SkillAttributeType.HEALTH, 1,
+				SkillAttributeType.LUCK, 1
+			)
+		));
+		context.registerCharacterOption(createKhalasarOption(
+			dothraki,
+			"house_pono",
+			"house_pono",
+			"khal_pono",
+			"Dothraki",
+			"Pono",
+			false,
+			Map.of(
+				SkillAttributeType.RIDING, 2,
+				SkillAttributeType.HEALTH, 1,
+				SkillAttributeType.CHARISMA, 1
+			)
+		));
+	}
+
+	private static CharacterSelectionOption createKhalasarOption(
+		Kingdom kingdom,
+		String optionPath,
+		String houseTexturePath,
+		String previewTexturePath,
+		String displayName,
+		String houseDisplayName,
+		boolean primary,
+		Map<SkillAttributeType, Integer> startingSkillPoints
+	) {
+		return new CharacterSelectionOption(
+			MOD_ID + ":" + optionPath,
+			kingdom.getId(),
+			Identifier.of(MOD_ID, "textures/gui/houses/" + houseTexturePath + ".png"),
+			Identifier.of(MOD_ID, "textures/entity/character/" + previewTexturePath + ".png"),
+			false,
+			displayName,
+			houseDisplayName,
+			primary,
 			new CharacterEquipmentPreset(
-				"minecraft:chainmail_helmet",
+				"",
 				"minecraft:leather_chestplate",
 				"minecraft:leather_leggings",
 				"minecraft:leather_boots",
-				"minecraft:iron_sword",
-				"minecraft:shield"
+				"minecraft:bow",
+				"minecraft:iron_sword"
 			),
-			Map.of(
-				SkillAttributeType.CHARISMA, 2,
-				SkillAttributeType.INTELLIGENCE, 2,
-				SkillAttributeType.TRADING, 1
-			),
+			startingSkillPoints,
 			Map.of(),
 			"",
 			List.of(
-				"minecraft:beach",
-				"minecraft:stony_shore"
+				"minecraft:savanna",
+				"minecraft:plains"
 			)
-		));
+		);
 	}
 }
