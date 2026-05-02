@@ -1,34 +1,28 @@
 {
 	"schemaVersion": 1,
-	"id": "agob-example-addon",
+	"id": "${mod_id}",
 	"version": "${version}",
-	"name": "Agob Example Addon",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "${mod_name}",
+	"description": "A minimal Fabric addon mod that demonstrates the public AGOB addon API.",
 	"authors": [
-		"Me!"
+		"Trep"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/treppord/got-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/agob-example-addon/icon.png",
+	"icon": "assets/${mod_id}/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"trep.example.AgobExampleAddon"
-		],
-		"fabric-datagen": [
-			"trep.example.AgobExampleAddonDataGenerator"
+		"agob-addon": [
+			"trep.exampleagobaddon.ExampleAgobAddon"
 		]
 	},
-	"mixins": [
-		"agob-example-addon.mixins.json"
-	],
 	"depends": {
-		"fabricloader": ">=0.19.2",
+		"fabricloader": ">=0.18.5",
 		"minecraft": "~1.21.1",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"agob": "*"
 	}
 }

@@ -1,84 +1,103 @@
 # Example AGOB Addon
 
-This repository demonstrates how to build a Fabric addon mod against the AGOB addon API.
+This repository is a complete Fabric addon example for `A Game of Blocks` using the documented AGOB addon API. It is intentionally small and copyable: one addon entrypoint, one troop pack, one quest template, one custom religion, one custom Essos kingdom, and one primary character selection option.
 
-It shows four supported extension patterns:
+## What It Demonstrates
 
-- adding troop packs from JSON resources
-- adding quest templates that merge with AGOB quests
-- registering a custom religion and kingdom
-- registering a matching character option for that kingdom
+- a custom Fabric `agob-addon` entrypoint
+- `trep.got.api.AgobAddonEntrypoint` registration flow
+- troop JSON loaded from `data/exampleagobaddon/agob/troops`
+- a quest template loaded from `data/exampleagobaddon/agob/quests`
+- a custom religion and a custom Essos kingdom registered through the public AGOB API
+- one `ReligionSelectionOption`
+- one primary `CharacterSelectionOption`
+- placeholder textures whose resource ids match the registered content
 
-## What This Example Contains
+## Project Layout
 
-- an `agob-addon` Fabric entrypoint
-- one addon troop pack under `data/<modid>/agob/troops`
-- one addon quest template under `data/<modid>/agob/quests`
-- one registered religion
-- one registered kingdom
-- one registered character option
-- one texture set referenced by the addon content
+- `src/main/java/trep/exampleagobaddon/ExampleAgobAddon.java`
+- `src/main/resources/fabric.mod.json`
+- `src/main/resources/data/exampleagobaddon/agob/troops/starhaven_outriders.json`
+- `src/main/resources/data/exampleagobaddon/agob/quests/starforge_supplies.json`
+- `src/main/resources/assets/exampleagobaddon/...`
 
-## AGOB API Entry Point
+## Local Setup
 
-AGOB discovers addons through the Fabric entrypoint key:
+This sample is pinned to AGOB `1.23.5-beta` from Modrinth and targets the same Minecraft and Fabric stack AGOB uses:
+
+- Minecraft `1.21.1`
+- Fabric Loader `0.18.5`
+- Fabric API `0.116.9+1.21.1`
+- Yarn mappings `1.21.1+build.3`
+- Loom `1.15-SNAPSHOT`
+- AGOB Modrinth dependency `maven.modrinth:a-game-of-blocks:1.23.5-beta`
+
+The build uses Modrinth Maven, so developers copying this repository do not need a neighboring `got-mod` checkout:
+
+```bash
+./gradlew build
+```
+
+If you want to target a different public AGOB release later, update `agob_version` in `gradle.properties`.
+
+## How The Addon Uses The AGOB API
+
+The addon is discovered through the Fabric entrypoint key:
 
 ```json
 {
   "entrypoints": {
-    "agob-addon": ["com.example.agobaddon.ExampleAgobAddon"]
+    "agob-addon": [
+      "trep.exampleagobaddon.ExampleAgobAddon"
+    ]
   }
 }
 ```
 
-The entrypoint must implement `trep.got.api.AgobAddonEntrypoint`.
+The entrypoint registers content in this order:
 
-## Troop Pack Registration
+1. troop resources with `registerTroopResourceDirectory(...)`
+2. one quest template with `registerQuestTemplateResource(...)`
+3. one religion with `registerReligion(...)`
+4. one custom Essos kingdom with `registerKingdom(...)`
+5. one `ReligionSelectionOption`
+6. one primary `CharacterSelectionOption`
 
-Register a troop resource directory:
+The example kingdom uses the custom `Sea of Stars` religion and `Culture.ESSOS`, so it represents an Essos-side faction addon while staying inside the supported addon surface and avoiding AGOB internals, mixins, or reflection hooks.
 
-```java
-context.registerTroopResourceDirectory("data/exampleagobaddon/agob/troops");
-```
+## Registered Example Content
 
-AGOB will load every `.json` file directly inside that folder.
+- Religion id: `exampleagobaddon:sea_of_stars`
+- Kingdom id: `exampleagobaddon:starhaven`
+- Kingdom culture: `ESSOS`
+- Kingdom religion: `Sea of Stars`
+- Religion option id: `exampleagobaddon:sea_of_stars`
+- Character option id: `exampleagobaddon:house_tidecaller`
+- Troop file: `starhaven_outriders.json`
+- Quest file: `starforge_supplies.json`
 
-## Quest Registration
+The troop JSON follows AGOB's dynamic troop schema and includes:
 
-Register each quest template file explicitly:
+- a namespaced `kingdom_id`
+- one `camp_site`
+- one troop entry with equipment, stats, traits, and a matching skin texture id
 
-```java
-context.registerQuestTemplateResource("data/exampleagobaddon/agob/quests/bronze_delivery.json");
-```
+The quest JSON follows AGOB's current quest template schema and includes:
 
-## Faction Registration
+- a namespaced quest template id
+- one allowed NPC role
+- one allowed kingdom id
+- at least one reward entry
 
-The example also shows how to register:
+## Extension Notes
 
-- a `Religion`
-- a `Kingdom`
-- a `ReligionSelectionOption`
-- a `CharacterSelectionOption`
+- Keep all ids under your own mod namespace.
+- Register kingdoms before character options that point at them.
+- Register religions before kingdoms or religion selection options that use them.
+- Keep troop ids globally unique across AGOB and other addons.
+- Add more troop packs by placing more `.json` files directly inside the registered troop directory.
+- Add more quest templates by creating more files under `data/<modid>/agob/quests` and registering each file explicitly.
 
-That is the current supported path for creating a full custom faction addon without depending on AGOB internals.
+## Intentional Limits
 
-## Important Limits
-
-This example intentionally avoids private AGOB systems.
-
-Do not depend on:
-
-- AGOB networking payloads
-- castle generation internals
-- village internals
-- internal registries outside the published API path
-
-If you want to build on additional systems later, wait until AGOB explicitly documents them as public API.
-
-## Development Notes
-
-- Keep all ids namespaced to your addon mod id.
-- Ensure troop ids and option ids are globally unique.
-- Register kingdoms before character options that reference them.
-- Register religions before religion options or kingdoms that reference them.
-- If a kingdom exposes character options, provide exactly one primary option.
+This example does not use AGOB internal registries, networking classes, village systems, or castle-generation internals. It is meant to be a clean public-API reference that addon developers can duplicate safely.

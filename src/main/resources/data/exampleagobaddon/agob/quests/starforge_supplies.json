@@ -1,0 +1,19 @@
+{
+  "id": "exampleagobaddon:starforge_supplies",
+  "display_name": "Supplies for the Starforge",
+  "item_id": "minecraft:copper_ingot",
+  "min_count": 8,
+  "max_count": 12,
+  "min_duration_days": 1,
+  "max_duration_days": 3,
+  "allowed_roles": [
+    "blacksmith"
+  ],
+  "allowed_kingdom_ids": [
+    "exampleagobaddon:starhaven"
+  ],
+  "rewards": [
+    { "type": "reputation_experience", "min": 12, "max": 18 },
+    { "type": "gold_ingots", "min": 1, "max": 2 }
+  ]
+}

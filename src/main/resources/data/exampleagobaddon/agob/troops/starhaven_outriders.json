@@ -1,0 +1,48 @@
+{
+  "kingdom_id": "exampleagobaddon:starhaven",
+  "camp_site": {
+    "id": "exampleagobaddon:starhaven_waycamp",
+    "structure_path": "exampleagobaddon/starhaven_waycamp",
+    "claim_name": "Starhaven Waycamp",
+    "tier_name": "Encampment",
+    "claim_radius_chunks": 1,
+    "min_spawn_count": 1,
+    "max_spawn_count": 2,
+    "allow_other_kingdom_spawns": false,
+    "other_kingdom_spawn_percent": 0,
+    "spawn_kingdom_ids": [
+      "exampleagobaddon:starhaven"
+    ],
+    "troop_ids": [
+      "exampleagobaddon:starhaven_scout"
+    ]
+  },
+  "troops": [
+    {
+      "id": "exampleagobaddon:starhaven_scout",
+      "display_name": "Starhaven Scout",
+      "unit_type": "archer",
+      "tier": 2,
+      "traits": [
+        "ranged",
+        "fast",
+        "coastal"
+      ],
+      "upgrade_targets": [],
+      "skin_texture": "exampleagobaddon:textures/entity/starhaven_scout.png",
+      "hire_cost_item": "minecraft:gold_ingot",
+      "hire_cost_amount": 8,
+      "equipment": {
+        "head": "minecraft:chainmail_helmet",
+        "chest": "minecraft:chainmail_chestplate",
+        "legs": "minecraft:leather_leggings",
+        "feet": "minecraft:leather_boots",
+        "mainhand": "minecraft:bow",
+        "offhand": "minecraft:iron_sword"
+      },
+      "base_health": 28.0,
+      "base_damage": 4.0,
+      "base_speed": 0.26
+    }
+  ]
+}
