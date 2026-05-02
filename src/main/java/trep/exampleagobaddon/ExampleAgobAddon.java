@@ -1,5 +1,9 @@
 package trep.exampleagobaddon;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import net.minecraft.util.Identifier;
 import trep.got.api.AgobAddonContext;
 import trep.got.api.AgobAddonEntrypoint;
@@ -12,14 +16,14 @@ import trep.got.kingdom.Religion;
 import trep.got.religion.ReligionSelectionOption;
 import trep.got.skill.SkillAttributeType;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 public final class ExampleAgobAddon implements AgobAddonEntrypoint {
 	public static final String MOD_ID = "exampleagobaddon";
 	private static final String RELIGION_ID = MOD_ID + ":great_shepherd";
 	private static final String KINGDOM_PATH = "dothraki";
+	private static final List<String> DOTHRAKI_SPAWN_BIOMES = List.of(
+		"dothraki_sea",
+		"dothraki_sea_steppe"
+	);
 
 	@Override
 	public void register(AgobAddonContext context) {
@@ -52,12 +56,20 @@ public final class ExampleAgobAddon implements AgobAddonEntrypoint {
 			"house_drogo",
 			"khal_drogo",
 			"Dothraki",
-			"Drogo",
+			"Khal Drogo",
 			true,
 			Map.of(
-				SkillAttributeType.CHARISMA, 2,
-				SkillAttributeType.RIDING, 2,
-				SkillAttributeType.LUCK, 1
+				SkillAttributeType.HEALTH, 14,
+				SkillAttributeType.INTELLIGENCE, 2,
+				SkillAttributeType.CHARISMA, 17,
+				SkillAttributeType.LUCK, 10,
+				SkillAttributeType.TRADING, 5,
+				SkillAttributeType.SMITHING, 5,
+				SkillAttributeType.RIDING, 25
+			),
+			Map.of(
+				SkillAttributeType.CHARISMA, 10,
+				SkillAttributeType.RIDING, 10
 			)
 		));
 		context.registerCharacterOption(createKhalasarOption(
@@ -66,12 +78,20 @@ public final class ExampleAgobAddon implements AgobAddonEntrypoint {
 			"house_jhaqo",
 			"khal_jhaqo",
 			"Dothraki",
-			"Jhaqo",
+			"Khal Jhaqo",
 			false,
 			Map.of(
-				SkillAttributeType.RIDING, 2,
-				SkillAttributeType.HEALTH, 1,
-				SkillAttributeType.LUCK, 1
+				SkillAttributeType.HEALTH, 15,
+				SkillAttributeType.INTELLIGENCE, 1,
+				SkillAttributeType.CHARISMA, 13,
+				SkillAttributeType.LUCK, 11,
+				SkillAttributeType.TRADING, 5,
+				SkillAttributeType.SMITHING, 5,
+				SkillAttributeType.RIDING, 25
+			),
+			Map.of(
+				SkillAttributeType.HEALTH, 10,
+				SkillAttributeType.RIDING, 10
 			)
 		));
 		context.registerCharacterOption(createKhalasarOption(
@@ -80,12 +100,20 @@ public final class ExampleAgobAddon implements AgobAddonEntrypoint {
 			"house_pono",
 			"khal_pono",
 			"Dothraki",
-			"Pono",
+			"Khal Pono",
 			false,
 			Map.of(
-				SkillAttributeType.RIDING, 2,
-				SkillAttributeType.HEALTH, 1,
-				SkillAttributeType.CHARISMA, 1
+				SkillAttributeType.HEALTH, 13,
+				SkillAttributeType.INTELLIGENCE, 8,
+				SkillAttributeType.CHARISMA, 14,
+				SkillAttributeType.LUCK, 0,
+				SkillAttributeType.TRADING, 6,
+				SkillAttributeType.SMITHING, 5,
+				SkillAttributeType.RIDING, 25
+			),
+			Map.of(
+				SkillAttributeType.CHARISMA, 10,
+				SkillAttributeType.RIDING, 10
 			)
 		));
 	}
@@ -99,6 +127,8 @@ public final class ExampleAgobAddon implements AgobAddonEntrypoint {
 		String houseDisplayName,
 		boolean primary,
 		Map<SkillAttributeType, Integer> startingSkillPoints
+		,
+		Map<SkillAttributeType, Integer> maxSkillCapBonuses
 	) {
 		return new CharacterSelectionOption(
 			MOD_ID + ":" + optionPath,
@@ -112,18 +142,15 @@ public final class ExampleAgobAddon implements AgobAddonEntrypoint {
 			new CharacterEquipmentPreset(
 				"",
 				"minecraft:leather_chestplate",
-				"minecraft:leather_leggings",
-				"minecraft:leather_boots",
+				"minecraft:chainmail_leggings",
+				"minecraft:chainmail_boots",
 				"minecraft:bow",
 				"minecraft:iron_sword"
 			),
 			startingSkillPoints,
-			Map.of(),
+			maxSkillCapBonuses,
 			"",
-			List.of(
-				"minecraft:savanna",
-				"minecraft:plains"
-			)
+			DOTHRAKI_SPAWN_BIOMES
 		);
 	}
 }

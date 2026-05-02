@@ -65,6 +65,8 @@ The entrypoint registers content in this order:
 
 The example kingdom uses the custom `Great Shepherd` religion and `Culture.ESSOS`, so it represents an Essos-side faction addon while staying inside the supported addon surface and avoiding AGOB internals, mixins, or reflection hooks.
 
+Because this example kingdom does not define its own AGOB castle set, its character options are configured to spawn specifically in the built-in `agob:dothraki_sea` and `agob:dothraki_sea_steppe` biomes in the `iceandfire` dimension. That keeps the faction usable in world creation without requiring custom worldgen first.
+
 ## Registered Example Content
 
 - Religion id: `exampleagobaddon:great_shepherd`
@@ -95,6 +97,10 @@ The character example includes three lore-inspired Dothraki options:
 - `Drogo` as the primary option, representing Khal Drogo's khalasar
 - `Jhaqo`
 - `Pono`
+
+The starting attributes are also written in the same style as AGOB's built-in kingdom options: every house defines all seven skill attributes with kingdom-scale values rather than sparse low placeholder numbers.
+
+All three Dothraki character options use a lighter rider kit in line with the troop example: leather chest armor, chainmail leggings, chainmail boots, a bow, and an iron sword.
 
 ## Extension Notes
 

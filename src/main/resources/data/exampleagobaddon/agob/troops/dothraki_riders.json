@@ -10,12 +10,8 @@
     "max_spawn_count": 2,
     "allow_other_kingdom_spawns": false,
     "other_kingdom_spawn_percent": 0,
-    "spawn_kingdom_ids": [
-      "exampleagobaddon:dothraki"
-    ],
-    "troop_ids": [
-      "exampleagobaddon:dothraki_rider"
-    ]
+    "spawn_kingdom_ids": ["exampleagobaddon:dothraki"],
+    "troop_ids": ["exampleagobaddon:dothraki_rider"]
   },
   "troops": [
     {
@@ -23,25 +19,20 @@
       "display_name": "Dothraki Rider",
       "unit_type": "cavalry",
       "tier": 2,
-      "traits": [
-        "mounted",
-        "fast",
-        "raider"
-      ],
+      "traits": ["mounted", "fast", "raider"],
       "upgrade_targets": [],
       "skin_texture": "exampleagobaddon:textures/entity/dothraki_rider.png",
       "hire_cost_item": "minecraft:gold_ingot",
       "hire_cost_amount": 8,
       "equipment": {
-        "chest": "minecraft:leather_chestplate",
-        "legs": "minecraft:leather_leggings",
-        "feet": "minecraft:leather_boots",
-        "mainhand": "minecraft:bow",
-        "offhand": "minecraft:iron_sword"
+        "chest": "",
+        "legs": "",
+        "feet": "agob:gambeson_boots",
+        "mainhand": "minecraft:iron_sword"
       },
       "base_health": 28.0,
-      "base_damage": 4.0,
-      "base_speed": 0.28
+      "base_damage": 6.0,
+      "base_speed": 0.4
     }
   ]
 }
