@@ -1,0 +1,32 @@
+{
+  "type": "agob:blacksmith",
+  "kingdom": "exampleagobaddon:dothraki",
+  "group": "plates",
+  "order": 2,
+  "required_smithing_level": 0,
+  "speed": 0.22,
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "exampleagobaddon:plate_dothraki"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:leather"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "agob:blacksmith_hammer"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "exampleagobaddon:dothraki_leggings",
+    "count": 1
+  }
+}

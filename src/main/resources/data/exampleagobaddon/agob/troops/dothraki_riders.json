@@ -25,9 +25,9 @@
       "hire_cost_item": "minecraft:gold_ingot",
       "hire_cost_amount": 8,
       "equipment": {
-        "chest": "",
-        "legs": "",
-        "feet": "agob:gambeson_boots",
+        "chest": "exampleagobaddon:dothraki_chestplate",
+        "legs": "exampleagobaddon:dothraki_leggings",
+        "feet": "exampleagobaddon:dothraki_boots",
         "mainhand": "minecraft:iron_sword"
       },
       "base_health": 28.0,

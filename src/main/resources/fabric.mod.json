@@ -12,6 +12,7 @@
   "icon": "assets/${mod_id}/icon.png",
   "environment": "*",
   "entrypoints": {
+    "main": ["trep.exampleagobaddon.ExampleAgobAddonMod"],
     "agob-addon": ["trep.exampleagobaddon.ExampleAgobAddon"]
   },
   "depends": {

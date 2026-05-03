@@ -1,0 +1,7 @@
+{
+  "kingdom": "exampleagobaddon:dothraki",
+  "id": "plates",
+  "display_name": "Rider Plates",
+  "icon": "exampleagobaddon:plate_dothraki",
+  "order": 0
+}

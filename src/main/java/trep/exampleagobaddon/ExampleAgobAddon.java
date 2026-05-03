@@ -42,6 +42,7 @@ public final class ExampleAgobAddon implements AgobAddonEntrypoint {
 			KingdomCategory.CHARACTER_OPTION,
 			KingdomCategory.CASTLELESS_ORIGIN
 		));
+		context.registerBlacksmithKingdomTab(dothraki.getId());
 
 		context.registerReligionOption(new ReligionSelectionOption(
 			RELIGION_ID,
@@ -142,9 +143,9 @@ public final class ExampleAgobAddon implements AgobAddonEntrypoint {
 			primary,
 			new CharacterEquipmentPreset(
 				"",
-				"minecraft:leather_chestplate",
-				"minecraft:chainmail_leggings",
-				"minecraft:chainmail_boots",
+				MOD_ID + ":dothraki_chestplate",
+				MOD_ID + ":dothraki_leggings",
+				MOD_ID + ":dothraki_boots",
 				"minecraft:bow",
 				"minecraft:iron_sword"
 			),
