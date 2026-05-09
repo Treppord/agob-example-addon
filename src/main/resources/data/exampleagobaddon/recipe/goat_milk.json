@@ -1,0 +1,23 @@
+{
+  "type": "agob:beer_brewing",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "agob:empty_cup"
+    }
+  ],
+  "result": {
+    "item": "agob:goat_milk"
+  }
+}
